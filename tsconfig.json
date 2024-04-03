@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig.json",
+  "compilerOptions": {
+    // Typescript 를 Javascript로 컴파일할때 사용하는 옵션들
+    "target": "ES5", // Typescript가 변환을 목표로하는 언어의 버전 (ES5 이후의 버전을 ES5로 변환)
+    "lib": ["dom", "dom.iterable", "esnext"], // target이 ES5이면 Promise 등 ES6 이후의 존재들을 모른다. esnext를 추가함으로 신규기능에 대한 API조회가 가능해진다.
+    "allowJs": true, // Typescript가 JS파일도 컴파일 하게 할건지 결정
+    "skipLibCheck": true, // 라이브러리에서 제공하는 d.ts에 대한 검사 여부 결정(규모가 큰 프로젝트의 라이브러리의 선언 파일들의 타입 체크를 생략해 컴파일 시간 단축)
+    "strict": true, // Typescript컴파일러의 모든 엄격한 타입 확인 옵션의 활성화 여부 (alwaysStrict === 모든 파일에 use strict로 분석 여부를 결정 및 추가)
+    "forceConsistentCasingInFileNames": true, //  파일이름의 대소문자를 구분하도록 강제. 일관되지 않는 참조의 허용 유무
+    "noEmit": true, // 컴파일로 인한 .js 파일 생성 하지않고 타입체크만 함.
+    "esModuleInterop": true, // coommonJS방식의 모듈을 import로 가져올 수 있게 해줌
+    "module": "esnext", //  모듈시스템을 설정한다.
+    "moduleResolution": "node", //  모듈의 해석 방법을 설정
+    "resolveJsonModule": true, // JSON파일을 import할 수 있게 해줌
+    "isolatedModules": true, //  각 파일을 분리된 모듈로 트랜스파일링의 진행 여부를 결정 => imoprt나 export가 파일에 없다면 단순 스크립트파일로 인식하여 해당 파일이 안 생성되도록 함
+    "jsx": "preserve", //  .tsx파일 내부의 JSX를 컴파일하는 방식을 설정한다. preserve는 변환하지않고 그대로 유지하는 방식
+    "incremental": true, //  마지막 정보를 .tsbuildinfo파일 형태로 디스크에 저장하여 컴파일을 더 빠르게 수행할 수 있다.
+    "baseUrl": "src", //  모듈을 찾을 때 기준이 되는 디렉토리 지정
+    //  "paths": {
+    //   // 상대경로가 아닌 절대경로를 사용할 수 있게 해줌
+    //   "#pages/*": ["pages/*"],
+    //   "#hooks/*": ["hooks/*"],
+    //   "#types/*": ["types/*"],
+    //   "#components/*": ["components/*"],
+    //   "#utils/*": ["utils/*"]
+    // }
+  },
+  "include": ["**/*.ts", "**/*.tsx"], // Typescript컴파일 대상에서 포함시킬 파일 목록
+  "exclude": ["node_modules", "**/*.test.ts", "**/*.storybook.txs"] //  타입스크립트 컴파일 대상에서 제외시킬 파일 목록
+}
