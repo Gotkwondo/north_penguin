@@ -17,6 +17,7 @@
     "jsx": "preserve", //  .tsx파일 내부의 JSX를 컴파일하는 방식을 설정한다. preserve는 변환하지않고 그대로 유지하는 방식
     "incremental": true, //  마지막 정보를 .tsbuildinfo파일 형태로 디스크에 저장하여 컴파일을 더 빠르게 수행할 수 있다.
     "baseUrl": "src", //  모듈을 찾을 때 기준이 되는 디렉토리 지정
+    // "sourceMap": true,
     //  "paths": {
     //   // 상대경로가 아닌 절대경로를 사용할 수 있게 해줌
     //   "#pages/*": ["pages/*"],
@@ -26,6 +27,6 @@
     //   "#utils/*": ["utils/*"]
     // }
   },
-  "include": ["**/*.ts", "**/*.tsx"], // Typescript컴파일 대상에서 포함시킬 파일 목록
-  "exclude": ["node_modules", "**/*.test.ts", "**/*.storybook.txs"] //  타입스크립트 컴파일 대상에서 제외시킬 파일 목록
+  "include": ["**/*.ts", "**/*.tsx"], // Typescript컴파일 대상에서 포함시킬 파일 목록. (tsconfig.json 위치에 include한 파일 유형이 없는 경우는 에러 발생 No inputs were found in config file)
+  "exclude": ["node_modules"] //  타입스크립트 컴파일 대상에서 제외시킬 파일 목록
 }
