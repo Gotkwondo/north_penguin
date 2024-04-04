@@ -50,6 +50,14 @@ module.exports = {
           filename: 'images/[hash][ext][query]', // (hash: 해시 값, ext: 파일 확장자, query: 쿼리 문자열)
         },
       },
+      {
+        test: /\.gif$/,
+        use: 'file-loader',
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
     ]
   },
   devServer: {

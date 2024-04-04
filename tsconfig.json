@@ -27,6 +27,6 @@
     //   "#utils/*": ["utils/*"]
     // }
   },
-  "include": ["**/*.ts", "**/*.tsx"], // Typescript컴파일 대상에서 포함시킬 파일 목록. (tsconfig.json 위치에 include한 파일 유형이 없는 경우는 에러 발생 No inputs were found in config file)
+  "include": ["**/*.ts", "**/*.tsx", "src/custom.ts"], // Typescript컴파일 대상에서 포함시킬 파일 목록. (tsconfig.json 위치에 include한 파일 유형이 없는 경우는 에러 발생 No inputs were found in config file)
   "exclude": ["node_modules"] //  타입스크립트 컴파일 대상에서 제외시킬 파일 목록
 }
