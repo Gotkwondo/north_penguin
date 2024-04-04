@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm webpack build --env WEBPACKMOD",
-    "start": "npm webpack serve"
+    "start": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,8 @@
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
     "@babel/core": "^7.24.3",
