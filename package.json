@@ -1,0 +1,26 @@
+{
+  "name": "north_penguin",
+  "version": "1.0.0",
+  "description": "Long trip to go to Penguin's hometown",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gotkwondo/north_penguin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gotkwondo/north_penguin/issues"
+  },
+  "homepage": "https://github.com/Gotkwondo/north_penguin#readme",
+  "dependencies": {
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.23",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.4.3"
+  }
+}
