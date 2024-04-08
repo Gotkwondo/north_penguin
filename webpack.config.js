@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: './src/index.ts', // 앱의 소스코드 중 가장 최상단 모듈의 경로
+  entry: './src/index.tsx', // 앱의 소스코드 중 가장 최상단 모듈의 경로
   // output은 변환하고 번들링된 파일을 어느 디렉토리에 어떤 파일명으로 저장할 지에 대한 설정
   output: {
     path: path.resolve(__dirname, 'dist'), // 경로 설정
