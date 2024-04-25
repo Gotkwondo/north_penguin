@@ -76,6 +76,9 @@ module.exports = {
   ],
   resolve: { // js, ts, jsx, tsx 파일에 한해 import시 확장자를 생략하기 위한 설정
     extensions: ['.js', '.ts', '.jsx', '.tsx'],
+    alias: {
+      "components": path.resolve(__dirname, "src/components")
+    }
   },
   mode: process.env.WEBPACKMOD === 'production' ? 'production' : 'development',
 }

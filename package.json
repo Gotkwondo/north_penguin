@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm webpack build --env WEBPACKMOD",
-    "start": "webpack serve"
+    "build": "webpack build --env WEBPACKMOD",
+    "start": "webpack serve",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/Gotkwondo/north_penguin/issues"
   },
-  "homepage": "https://github.com/Gotkwondo/north_penguin#readme",
+  "homepage": "https://gotkwondo.github.io/north_penguin/",
   "dependencies": {
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
@@ -45,6 +47,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.6.0",
     "prettier": "^3.2.5",
     "style-loader": "^3.3.4",
