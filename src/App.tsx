@@ -1,5 +1,3 @@
-// import Test from 'components/Test';
-// import Test from 'components/Test';
 import Test from 'components/Test';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';

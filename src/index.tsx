@@ -8,7 +8,8 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Router>
+  // 여기서부터 proccess.env가 webpack에서 읽혀지지 않는다.
+  <Router basename={process.env.PUBLIC_URL}>
     <App />
   </Router>
   
