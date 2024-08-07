@@ -8,6 +8,8 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
+  // 여기서부터 proccess.env가 webpack에서 읽혀지지 않는다.
+  // basename 속성을 없애주니 월활히 렌더링 된다.
   <Router>
     <App />
   </Router>
