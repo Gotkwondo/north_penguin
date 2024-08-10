@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import HomePage from 'pages/HomePage';
+import Header from 'components/modules/Header/Header';
 
 const meta = {
-  component: HomePage,
-} satisfies Meta<typeof HomePage>;
+  component: Header,
+} satisfies Meta<typeof Header>;
 
 export default meta;
 
