@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import IconBody from 'components/modules/IconBody/IconBody';
+import IconBody from 'components/modules/IconBody';
 import Crouch from '../assets/Crouch.png'
 
 const meta = {

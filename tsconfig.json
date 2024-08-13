@@ -23,6 +23,7 @@
       "pages/*": ["./pages/*"],
     //   "hooks/*": ["hooks/*"],
     //   "types/*": ["types/*"],
+      "modules/*": ["modules/*"],
       "assets/*": ["./assets/*"],
       "components/*": ["./components/*"],
     //   "utils/*": ["utils/*"]

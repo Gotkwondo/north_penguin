@@ -9,7 +9,7 @@ interface IconBodyInterface {
 const IconBody = ({ width, height, IconUrl }: IconBodyInterface) => {
   return (
     <div className='IconBody'>
-      <img src={ IconUrl } alt="" width={width} height={height}/>
+      <img src={ IconUrl } alt="" width={`${width}`} height={`${height}`}/>
     </div>
   )
 }
