@@ -19,7 +19,8 @@ const NavBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e2e0e0;
+  cursor: pointer;
+  /* background-color: #e2e0e0; */
 `
 
 export default NavBar;
