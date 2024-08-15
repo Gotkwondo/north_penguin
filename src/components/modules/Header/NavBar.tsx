@@ -20,7 +20,6 @@ const NavBlock = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  /* background-color: #e2e0e0; */
 `
 
 export default NavBar;

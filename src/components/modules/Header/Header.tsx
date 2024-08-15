@@ -16,22 +16,21 @@ const Header = () => {
         <NavBar text={"Ranking"} />
         <NavBar text={"Developer"} />
       </NavArea>
-      <LoginStateArea>
-        ( Login State )
-      </LoginStateArea>
+      <LoginStateArea text='Login State'/>
     </HeaderBody>
   )
 }
 
 const HeaderBody = styled.div`
   width: 100%;
-  height: 2.5rem;
+  height: 4vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
   border-radius: 20px;
   background-color: aliceblue;
+  margin-bottom: 2rem;
 `
 
 const IconArea = styled.div`
@@ -50,10 +49,10 @@ const NavArea = styled.div`
   justify-content: space-around;
 `
 
-const LoginStateArea = styled.div`
+const LoginStateArea = styled(NavBar)`
   width: calc(8rem - 20px);
-  height: calc(100% - 20px);
-  padding: 10px;
+  height: 100%;
+  padding: 0 10px 0 5px;
 `
 
 export default Header;
