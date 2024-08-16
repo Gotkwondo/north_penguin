@@ -14,6 +14,16 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(ts|tsx)$/,
+      //   use: {
+      //     loader: 'ts-loader',
+      //     options: {
+      //       configFile: path.resolve(__dirname, 'tsconfig.json'),
+      //     },
+      //   },
+      //   exclude: /node_modules/,
+      // },
       {
         test: /\.(js|ts|jsx|tsx)$/, // 어떤 파일을 대상으로 하는 지를 검증할 정규표현식(주로 확장자)
         exclude: /(node_modules)/, // test에 들어간 정규 표현식이여도 제외할 파일 및 디렉터리의 정규 표현식

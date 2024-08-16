@@ -20,9 +20,10 @@
     // "sourceMap": true,
     "paths": {
       // 상대경로가 아닌 절대경로를 사용할 수 있게 해줌
-    //   "pages/*": ["pages/*"],
+      "pages/*": ["./pages/*"],
     //   "hooks/*": ["hooks/*"],
     //   "types/*": ["types/*"],
+      "modules/*": ["modules/*"],
       "assets/*": ["./assets/*"],
       "components/*": ["./components/*"],
     //   "utils/*": ["utils/*"]
