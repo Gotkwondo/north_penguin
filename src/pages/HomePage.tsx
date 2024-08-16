@@ -1,5 +1,5 @@
 import Header from 'components/modules/Header/Header';
-import HomeContent from 'components/Home/HomeContent';
+import HomeContent from 'components/modules/Home/HomeContent';
 import React from 'react'
 
 const HomePage = () => {
