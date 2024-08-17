@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface HeaderBlockInterface {
@@ -6,9 +7,12 @@ interface HeaderBlockInterface {
 }
 
 const HeaderBlock = ({ text }: HeaderBlockInterface) => {
+  const urlText = text.toLowerCase();
   return (
     <NavBlock>
-      {text}
+      <Link to={`/${urlText}`}>
+        {text}
+      </Link>
     </NavBlock>
   )
 };
