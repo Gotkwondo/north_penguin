@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import NavBar from 'components/modules/Header/NavBar';
+import HeaderBlock from 'components/modules/Header/HeaderBlock';
 
 
 const meta = {
-  component: NavBar,
+  component: HeaderBlock,
   args: {
     text: "test text"
   }
-} satisfies Meta<typeof NavBar>;
+} satisfies Meta<typeof HeaderBlock>;
 
 export default meta;
 

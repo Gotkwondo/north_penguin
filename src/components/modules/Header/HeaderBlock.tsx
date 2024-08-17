@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
 
-interface NavBarInterface {
+interface HeaderBlockInterface {
   text: string
 }
 
-const NavBar = ({ text }: NavBarInterface) => {
+const HeaderBlock = ({ text }: HeaderBlockInterface) => {
   return (
     <NavBlock>
       {text}
@@ -22,4 +22,4 @@ const NavBlock = styled.div`
   cursor: pointer;
 `
 
-export default NavBar;
+export default HeaderBlock;
