@@ -19,7 +19,7 @@ const HomeContent = ({ imgUrl, titleText, subTitleText }: HomeContentInterface) 
       <SubTitleArea>
         {subTitleText}
       </SubTitleArea>
-      <ImgContent IconUrl={Walk} width={100} height={100}/>
+      <ImgContent IconUrl={Walk} width={50} height={100}/>
       {/* <ImgContent src={imgUrl} /> */}
       
     </ContentArea>
@@ -29,7 +29,7 @@ const HomeContent = ({ imgUrl, titleText, subTitleText }: HomeContentInterface) 
 const ContentArea = styled.div`
   width: 100%;
   height: 60vh;
-  font-size: 5vw;
+  font-size: 12px;
   display: flex;
   flex-direction: column;
 `
@@ -42,14 +42,15 @@ const ImgContent = styled(IconBody)`
 const TitleArea = styled.div`
   position: absolute; // 이미지 위에 텍스트를 띄우기 위한 position
   width: calc(100% - 2rem);
-  font-size: 1.2em;
-  top: 15%;
+  font-size: 5em;
+  /* top: 1rem; */
 `
 
 const SubTitleArea = styled.div`
   position: absolute;
   width: calc(100% - 2rem);
-  top: 50%;
+  font-size: 4em;
+  top: 40%;
   text-align: end;
 `
 

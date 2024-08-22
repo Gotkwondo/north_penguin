@@ -2,19 +2,20 @@ import React from 'react';
 import IconBody from 'components/modules/IconBody';
 import Crouch from 'assets/Images/Crouch.png';
 import styled from 'styled-components';
-import NavBar from './NavBar';
+import HeaderBlock from './HeaderBlock';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
   return (
     <HeaderBody>
-      <IconArea>
+      <IconArea to={'/'}>
         <IconBody width={100} height={100} IconUrl={Crouch} />
       </IconArea>
       <NavArea>
-        <NavBar text={"Play"} />
-        <NavBar text={"Ranking"} />
-        <NavBar text={"Developer"} />
+        <HeaderBlock text={"Play"} />
+        <HeaderBlock text={"Ranking"} />
+        <HeaderBlock text={"Developer"} />
       </NavArea>
       <LoginStateArea text='Login State'/>
     </HeaderBody>
@@ -33,7 +34,7 @@ const HeaderBody = styled.div`
   margin-bottom: 2rem;
 `
 
-const IconArea = styled.div`
+const IconArea = styled(Link)`
   width: 3rem;
   height: 100%;
   display: flex;
@@ -49,7 +50,7 @@ const NavArea = styled.div`
   justify-content: space-around;
 `
 
-const LoginStateArea = styled(NavBar)`
+const LoginStateArea = styled(HeaderBlock)`
   width: calc(8rem - 20px);
   height: 100%;
   padding: 0 10px 0 5px;

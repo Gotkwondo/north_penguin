@@ -1,13 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import NavBar from 'components/modules/Header/NavBar';
-
+import NotFound from 'pages/NotFound';
 
 const meta = {
-  component: NavBar,
-  args: {
-    text: "test text"
-  }
-} satisfies Meta<typeof NavBar>;
+  component: NotFound,
+} satisfies Meta<typeof NotFound>;
 
 export default meta;
 
