@@ -3,12 +3,13 @@ import IconBody from 'components/modules/IconBody';
 import Crouch from 'assets/Images/Crouch.png';
 import styled from 'styled-components';
 import HeaderBlock from './HeaderBlock';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
   return (
     <HeaderBody>
-      <IconArea>
+      <IconArea to={'/'}>
         <IconBody width={100} height={100} IconUrl={Crouch} />
       </IconArea>
       <NavArea>
@@ -33,7 +34,7 @@ const HeaderBody = styled.div`
   margin-bottom: 2rem;
 `
 
-const IconArea = styled.div`
+const IconArea = styled(Link)`
   width: 3rem;
   height: 100%;
   display: flex;

@@ -10,9 +10,9 @@ const HeaderBlock = ({ text }: HeaderBlockInterface) => {
   const urlText = text.toLowerCase();
   return (
     <NavBlock>
-      <Link to={`/${urlText}`}>
+      <LinkBlock to={`/${urlText}`} >
         {text}
-      </Link>
+      </LinkBlock>
     </NavBlock>
   )
 };
@@ -24,6 +24,12 @@ const NavBlock = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+`;
+
+const LinkBlock = styled(Link)`
+  color: black;
+  text-decoration: none;
+  font-weight: 800;
 `
 
 export default HeaderBlock;
