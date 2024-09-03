@@ -1,29 +1,24 @@
 import styled from 'styled-components';
-import React, { RefObject, useEffect, useRef } from 'react';
-import { useCanvas } from 'hooks/useCanvas';
+import React, { useEffect, useRef } from 'react';
 import kaplay from 'kaplay';
-import { useClientWidthHeight } from 'hooks/useClientWidthHeight';
 
-interface GamePlayingPropsInterface {
-  canvasWidth: number,
-  canvasHeight: number
-}
-
-const GamePlaying = ({canvasWidth, canvasHeight}: GamePlayingPropsInterface) => {
+const GamePlaying = () => {
   const mainRef = useRef(null)
   const test = useRef(null);
   useEffect(() => {
     if (test.current) {
       kaplay({
         canvas: test.current,
+        root: test.current
       })
     }
   }, [])
   
   return (
     <GameContentArea ref={mainRef}>
-      {/* <GameCanvas className='test' ref={canvasRef} /> */}
-      <canvas width='100%' height='50%' ref={test}></canvas>
+      <CanvasArea>
+        <GameCanvas ref={test}></GameCanvas>
+      </CanvasArea>
     </GameContentArea>
   )
 }
@@ -37,10 +32,12 @@ const GameContentArea = styled.div`
   align-items: center;
 `;
 
-const GameCanvas = styled.canvas`
-  /* width: 100%;
-  height: 50%; */
+const CanvasArea = styled.div`
+  width: 100%;
+  height: 50%;
 `
+
+const GameCanvas = styled.canvas``;
 
 
 export default GamePlaying;
