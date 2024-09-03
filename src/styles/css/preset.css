@@ -1,3 +1,7 @@
 body{
   margin: 1rem 2rem;
 }
+
+canvas{
+  height: 50%;
+}
