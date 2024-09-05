@@ -1,4 +1,4 @@
-import kaplay from 'kaplay'
+import kaplay, { KAPLAYCtx } from 'kaplay'
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Walk from 'assets/Images/Walk.gif';
@@ -10,20 +10,9 @@ interface GameDisplayInterface {
 
 const GameDisplay = () => { 
   const test: React.MutableRefObject<null> = useRef(null);
-  let k;
   
   useEffect(() => {
     if (test.current) {
-      console.log(typeof test, test)
-      // k = kaplay({
-      //   canvas: test.current,
-      //   root: test.current
-      // })
-      // k.loadSprite("Penguein", Walk);
-      // k.setBackground(141, 183, 255);
-      // k.scene("game", () => {
-      //   k.setGravity(2400);
-      // })
       useKaplay(test)
     }
   }, []);
