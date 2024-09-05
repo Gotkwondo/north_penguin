@@ -1,18 +1,13 @@
 import styled from 'styled-components';
-import React, { RefObject, useEffect, useRef } from 'react';
-import { useCanvas } from 'hooks/useCanvas';
+import React, { useEffect, useRef } from 'react';
+import GameDisplay from 'components/modules/Game/GameDisplay';
 
-interface GamePlayingPropsInterface {
-  canvasWidth: number,
-  canvasHeight: number
-}
-
-const GamePlaying = ({ canvasWidth, canvasHeight }: GamePlayingPropsInterface) => {
-  const canvasRef: RefObject<HTMLCanvasElement> = useCanvas(canvasWidth, canvasHeight);
-
+const GamePlaying = () => {
   return (
     <GameContentArea>
-      <GameCanvas ref={canvasRef} />
+      <CanvasArea>
+        <GameDisplay />
+      </CanvasArea>
     </GameContentArea>
   )
 }
@@ -26,10 +21,13 @@ const GameContentArea = styled.div`
   align-items: center;
 `;
 
-const GameCanvas = styled.canvas`
-  /* width: 100%;
-  height: 50%; */
-`
+const CanvasArea = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 
 export default GamePlaying;
