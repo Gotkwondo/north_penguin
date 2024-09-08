@@ -1,16 +1,18 @@
 import kaplay, { GameObj, PosComp, SpriteComp, AreaComp, BodyComp, KAPLAYCtx } from 'kaplay'
 import Walk from 'assets/Images/Crouch.png';
-import { useState } from 'react';
 
 
 
 export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasElement>) => {
   const FLOOR_HEIGHT = 48;
   const TREE_MOVE_SPEED = 480;
-  const playerState = {
-    leftJump: 1
-  }
-  let score = 0;
+  const playerState: {
+    leftJump: number;
+    score: number;
+  } = {
+    leftJump: 1,
+    score: 0
+  };
 
   if (canvasRef.current) {
     let k: KAPLAYCtx<{}, string> = kaplay({
@@ -30,6 +32,11 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
         k.body(),
       ]);
 
+      player.onCollide("tree", () => {
+        k.go("gameOver", Math.floor(playerState.score / 100));
+        // k.burp();
+      })
+
       // 바닥 컴포넌트 생성
       k.add([
         k.rect(k.width(), FLOOR_HEIGHT),
@@ -41,22 +48,60 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
         k.color(132, 101, 236),
       ]);
 
+      const scoreLabel = k.add([
+        k.text(`${Math.floor(playerState.score / 100)}`),
+        k.pos(24, 24),
+      ]);
 
-      k.onKeyPress("space", () => jump(player, playerState));
-      k.onClick(() => {
-        console.log(playerState)
-        jump(player, playerState)
+      // 플레이어가 진행한 거리에 따라 점수 증가
+      k.onUpdate(() => {
+        playerState.score++;
+        scoreLabel.text = `${Math.floor(playerState.score / 100)}`;
       });
 
+      // 스페이스 키와 클릭 이벤트에 jump 기능 할당
+      k.onKeyPress("space", () => jump(player, playerState));
+      k.onClick(() => jump(player, playerState));
+
+      // 장애물 생성 기능
       spawnTree(k, FLOOR_HEIGHT, TREE_MOVE_SPEED);
       
     })
+
+    k.scene("gameOver", (score: number) => {
+      k.add([
+        // sprite()
+        k.pos(k.width() / 2, k.height() / 2 - 64),
+        k.scale(2),
+        k.anchor("center")
+      ]);
+
+      k.add([
+        k.text(`${score}`),
+        k.pos(k.width() / 2, k.height() / 2),
+        k.scale(2),
+        k.anchor("center")
+      ]);
+
+      k.onKeyPress("space", () => k.go('game'));
+      k.onClick(() => k.go('game'));
+    })
     // console.log(k.pl)
-    // k.go('game');
+    k.go('game');
   }
 }
 
-const jump = (player: GameObj<SpriteComp | PosComp | AreaComp | BodyComp>, playerState: { leftJump: number }) => {
+/**
+ * 플레이어의 점프 기능을 담당하는 함수, 이중 점프 가능
+ * @param player kaplay.add로 생성된 객체 GameObj<SpriteComp | PosComp | AreaComp | BodyComp>
+ * @param playerState 
+ */
+const jump = (
+  player: GameObj<SpriteComp | PosComp | AreaComp | BodyComp>,
+  playerState: {
+  leftJump: number;
+  score: number;
+}) => {
   if (player.isGrounded() && playerState.leftJump === 0) {
     playerState.leftJump = 1;
   }
@@ -66,14 +111,24 @@ const jump = (player: GameObj<SpriteComp | PosComp | AreaComp | BodyComp>, playe
     player.jump(800);
   }
   else if (!player.isGrounded() && playerState.leftJump > 0) {
-    player.jump(800);
+    player.jump(850);
     playerState.leftJump--;
   }
 };
 
-const spawnTree = (k: KAPLAYCtx<{}, string>, FLOOR_HEIGHT: number, TREE_MOVE_SPEED: number) => {
+/**
+ * 무작위 장애물 생성 함수
+ * @param k KAPLAYCtx<{}, string>
+ * @param FLOOR_HEIGHT number
+ * @param TREE_MOVE_SPEED number
+ */
+const spawnTree = (
+  k: KAPLAYCtx<{}, string>,
+  FLOOR_HEIGHT: number,
+  TREE_MOVE_SPEED: number
+) => {
   k.add([
-    k.rect(48, k.rand(32, 96)),
+    k.rect(15, k.rand(32, 96)),
     k.area(),
     k.outline(4),
     k.pos(k.width(), k.height() - FLOOR_HEIGHT),
@@ -86,4 +141,4 @@ const spawnTree = (k: KAPLAYCtx<{}, string>, FLOOR_HEIGHT: number, TREE_MOVE_SPE
   ]);
 
   k.wait(k.rand(0.4, 1.5), () => spawnTree(k, FLOOR_HEIGHT, TREE_MOVE_SPEED));
-}
+};
