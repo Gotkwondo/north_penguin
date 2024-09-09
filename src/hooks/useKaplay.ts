@@ -1,8 +1,6 @@
 import kaplay, { GameObj, PosComp, SpriteComp, AreaComp, BodyComp, KAPLAYCtx } from 'kaplay'
 import Walk from 'assets/Images/Crouch.png';
 
-
-
 export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasElement>) => {
   const FLOOR_HEIGHT = 48;
   const TREE_MOVE_SPEED = 480;
@@ -17,7 +15,8 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
   if (canvasRef.current) {
     let k: KAPLAYCtx<{}, string> = kaplay({
       canvas: canvasRef.current,
-      root: canvasRef.current
+      root: canvasRef.current,
+      global: false 
     })
     k.setBackground(141, 183, 255);
     k.loadSprite("Penguein", Walk);
@@ -30,11 +29,12 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
         k.pos(80, 40),
         k.area(),
         k.body(),
+        "player", // 플레이어 태그 추가
+        "gameObj" // 모든 게임 객체에 공통 태그 추가
       ]);
 
       player.onCollide("tree", () => {
         k.go("gameOver", Math.floor(playerState.score / 100));
-        // k.burp();
       })
 
       // 바닥 컴포넌트 생성
@@ -46,11 +46,14 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
         k.area(),
         k.body({ isStatic: true }),
         k.color(132, 101, 236),
+        "ground", // 바닥 태그 추가
+        "gameObj" // 모든 게임 객체에 공통 태그 추가
       ]);
 
       const scoreLabel = k.add([
         k.text(`${Math.floor(playerState.score / 100)}`),
         k.pos(24, 24),
+        "gameObj" // 공통 태그 추가
       ]);
 
       // 플레이어가 진행한 거리에 따라 점수 증가
@@ -65,7 +68,6 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
 
       // 장애물 생성 기능
       spawnTree(k, FLOOR_HEIGHT, TREE_MOVE_SPEED);
-      
     })
 
     k.scene("gameOver", (score: number) => {
@@ -73,22 +75,28 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
         // sprite()
         k.pos(k.width() / 2, k.height() / 2 - 64),
         k.scale(2),
-        k.anchor("center")
+        k.anchor("center"),
+        "gameObj" // 공통 태그 추가
       ]);
 
       k.add([
-        k.text(`${score}`),
+        k.text(`Score: ${score}\nPress Space to Restart`),
         k.pos(k.width() / 2, k.height() / 2),
         k.scale(2),
-        k.anchor("center")
+        k.anchor("center"),
+        "gameObj" // 공통 태그 추가
       ]);
-
+      
       k.onKeyPress("space", () => k.go('game'));
       k.onClick(() => k.go('game'));
-    })
-    // console.log(k.pl)
+      playerState.score = 0;
+    });
+
     k.go('game');
+
+    return k;
   }
+  return null;
 }
 
 /**
@@ -138,6 +146,7 @@ const spawnTree = (
     // 생성하는 객체가 화면에서 offset되면 게임 라이브러리 내부에 저장된 데이터가 소멸한다.
     k.offscreen({ destroy: true }),
     "tree",
+    "gameObj" // 공통 태그 추가
   ]);
 
   k.wait(k.rand(0.4, 1.5), () => spawnTree(k, FLOOR_HEIGHT, TREE_MOVE_SPEED));

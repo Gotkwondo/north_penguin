@@ -1,12 +1,15 @@
 import styled from 'styled-components';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import GameDisplay from 'components/modules/Game/GameDisplay';
 
 const GamePlaying = () => {
+  const [start, setStart] = useState<boolean>(false);
   return (
     <GameContentArea>
       <CanvasArea>
-        <GameDisplay />
+        { 
+          start ? <GameDisplay /> : <Test onClick={() => setStart(true)}>ddd</Test>
+        }
       </CanvasArea>
     </GameContentArea>
   )
@@ -29,5 +32,8 @@ const CanvasArea = styled.div`
   align-items: center;
 `;
 
+const Test = styled.div`
+  width: 100%;
+`
 
 export default GamePlaying;

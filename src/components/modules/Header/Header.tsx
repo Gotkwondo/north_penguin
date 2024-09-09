@@ -13,11 +13,11 @@ const Header = () => {
         <IconBody width={100} height={100} IconUrl={Crouch} />
       </IconArea>
       <NavArea>
-        <HeaderBlock text={"Play"} />
-        <HeaderBlock text={"Ranking"} />
-        <HeaderBlock text={"Developer"} />
+        <HeaderBlock text={"Play"} needReload={true} />
+        <HeaderBlock text={"Ranking"} needReload={false} />
+        <HeaderBlock text={"Developer"} needReload={false} />
       </NavArea>
-      <LoginStateArea text='Login State'/>
+      <LoginStateArea text='Login State' needReload={false} />
     </HeaderBody>
   )
 }

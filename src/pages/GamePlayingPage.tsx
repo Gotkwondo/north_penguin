@@ -1,6 +1,6 @@
 import GamePlaying from 'components/Game/GamePlaying';
 import Header from 'components/modules/Header/Header';
-import React, { RefObject, useRef } from 'react';
+import React, { RefObject, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const GamePlayingPage = () => {

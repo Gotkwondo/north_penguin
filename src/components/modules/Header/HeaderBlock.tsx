@@ -3,16 +3,23 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface HeaderBlockInterface {
-  text: string
+  text: string,
+  needReload: boolean,
 }
 
-const HeaderBlock = ({ text }: HeaderBlockInterface) => {
+const HeaderBlock = ({ text, needReload }: HeaderBlockInterface) => {
   const urlText = text.toLowerCase();
   return (
     <NavBlock>
-      <LinkBlock to={`/${urlText}`} >
-        {text}
-      </LinkBlock>
+      {
+        needReload ?
+          <ATagBlock href={`/${urlText}`}>
+            {text}
+          </ATagBlock> :
+          <LinkBlock to={`/${urlText}`}>
+            {text}
+          </LinkBlock>
+      }
     </NavBlock>
   )
 };
@@ -27,6 +34,12 @@ const NavBlock = styled.div`
 `;
 
 const LinkBlock = styled(Link)`
+  color: black;
+  text-decoration: none;
+  font-weight: 800;
+`
+
+const ATagBlock = styled.a`
   color: black;
   text-decoration: none;
   font-weight: 800;
