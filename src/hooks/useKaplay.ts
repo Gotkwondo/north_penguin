@@ -1,7 +1,7 @@
 import kaplay, { GameObj, PosComp, SpriteComp, AreaComp, BodyComp, KAPLAYCtx } from 'kaplay'
 import Walk from 'assets/Images/Crouch.png';
 
-export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasElement>) => {
+export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasElement>, start: boolean) => {
   const FLOOR_HEIGHT = 48;
   const TREE_MOVE_SPEED = 480;
   const playerState: {
@@ -11,12 +11,12 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
     leftJump: 1,
     score: 0
   };
-
-  if (canvasRef.current) {
+  
+  if (canvasRef.current && start) {
     let k: KAPLAYCtx<{}, string> = kaplay({
       canvas: canvasRef.current,
       root: canvasRef.current,
-      global: false 
+      global: false,
     })
     k.setBackground(141, 183, 255);
     k.loadSprite("Penguein", Walk);
@@ -64,7 +64,9 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
 
       // 스페이스 키와 클릭 이벤트에 jump 기능 할당
       k.onKeyPress("space", () => jump(player, playerState));
-      k.onClick(() => jump(player, playerState));
+      k.onClick(() => {
+        jump(player, playerState)
+      });
 
       // 장애물 생성 기능
       spawnTree(k, FLOOR_HEIGHT, TREE_MOVE_SPEED);
@@ -109,7 +111,7 @@ const jump = (
   playerState: {
   leftJump: number;
   score: number;
-}) => {
+  }) => {
   if (player.isGrounded() && playerState.leftJump === 0) {
     playerState.leftJump = 1;
   }

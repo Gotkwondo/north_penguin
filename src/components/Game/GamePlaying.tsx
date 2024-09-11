@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import GameDisplay from 'components/modules/Game/GameDisplay';
 
 const GamePlaying = () => {
@@ -8,7 +8,10 @@ const GamePlaying = () => {
     <GameContentArea>
       <CanvasArea>
         { 
-          start ? <GameDisplay /> : <Test onClick={() => setStart(true)}>ddd</Test>
+          start ?
+            <GameDisplay start={true} />
+            :
+            <StartButton onClick={() => setStart(true)}>START</StartButton>
         }
       </CanvasArea>
     </GameContentArea>
@@ -32,8 +35,15 @@ const CanvasArea = styled.div`
   align-items: center;
 `;
 
-const Test = styled.div`
+const StartButton = styled.div`
   width: 100%;
+  height: 50%;
+  font-weight: 800;
+  font-size: xx-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 `
 
 export default GamePlaying;

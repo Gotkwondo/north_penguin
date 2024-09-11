@@ -2,9 +2,21 @@ import GamePlaying from 'components/Game/GamePlaying';
 import Header from 'components/modules/Header/Header';
 import React, { RefObject, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { useDetectPlayPageStore } from 'zustand/pageState';
 
 const GamePlayingPage = () => {
   const mainRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+  const { isGamePage, yesGamePage, noGamePage } = useDetectPlayPageStore();
+  
+  useEffect(() => {
+    if (!isGamePage) {
+      yesGamePage();
+      window.location.reload();
+    }
+    return () => {
+      noGamePage();
+    }
+  }, []);
 
   return (
     <PlayingPage>

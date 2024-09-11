@@ -1,15 +1,21 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useKaplay } from 'hooks/useKaplay';
+import { KAPLAYCtx } from 'kaplay';
 
-const GameDisplay = () => {
+interface GameDisplayInterface{
+  start: boolean
+}
+
+const GameDisplay = ({start}: GameDisplayInterface) => {
   const test: React.MutableRefObject<null> = useRef(null);
+  const [instance, setInstance] = useState<KAPLAYCtx<{}, string> | null>(null);
 
   useEffect(() => {
-    if (test.current) {
-      const instance = useKaplay(test);
+    if (test.current && start && !instance) {
+      setInstance(useKaplay(test, start));
     }
-  }, []);
+  }, [start]);
 
   return (
     <CanvasContainer>
