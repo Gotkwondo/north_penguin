@@ -26,7 +26,7 @@ const GameDisplay = ({start}: GameDisplayInterface) => {
 
 const CanvasContainer = styled.div`
   width: 100%;
-  height: 50%;
+  height: 70%;
 `;
 
 const GameCanvas = styled.canvas`

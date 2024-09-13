@@ -3,7 +3,7 @@ import Walk from 'assets/Images/Crouch.png';
 
 export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasElement>, start: boolean) => {
   const FLOOR_HEIGHT = 48;
-  const TREE_MOVE_SPEED = 480;
+  const TREE_MOVE_SPEED = 400;
   const playerState: {
     leftJump: number;
     score: number;
@@ -11,13 +11,15 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
     leftJump: 1,
     score: 0
   };
-  
+  console.log(canvasRef.current!.width)
   if (canvasRef.current && start) {
+    console.log(canvasRef.current!.width)
     let k: KAPLAYCtx<{}, string> = kaplay({
       canvas: canvasRef.current,
       root: canvasRef.current,
       global: false,
     })
+    console.log(canvasRef.current!.width)
     k.setBackground(141, 183, 255);
     k.loadSprite("Penguein", Walk);
     k.scene('game', () => {
@@ -26,7 +28,7 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
       // 플레이어 컴포넌트 정의
       const player = k.add([
         k.sprite("Penguein"),
-        k.pos(80, 40),
+        k.pos(k.width() / 20, k.height() - FLOOR_HEIGHT),
         k.area(),
         k.body(),
         "player", // 플레이어 태그 추가
@@ -39,7 +41,7 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
 
       // 바닥 컴포넌트 생성
       k.add([
-        k.rect(k.width(), FLOOR_HEIGHT),
+        k.rect(k.width() * 50, FLOOR_HEIGHT),
         k.outline(4),
         k.pos(0, k.height()),
         k.anchor("botleft"),
@@ -63,28 +65,20 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
       });
 
       // 스페이스 키와 클릭 이벤트에 jump 기능 할당
-      k.onKeyPress("space", () => jump(player, playerState));
+      k.onKeyPress("up", () => jump(player, playerState));
       k.onClick(() => {
         jump(player, playerState)
       });
 
       // 장애물 생성 기능
-      spawnTree(k, FLOOR_HEIGHT, TREE_MOVE_SPEED);
+      spawnTree(k, FLOOR_HEIGHT, TREE_MOVE_SPEED, playerState);
     })
 
     k.scene("gameOver", (score: number) => {
       k.add([
-        // sprite()
-        k.pos(k.width() / 2, k.height() / 2 - 64),
-        k.scale(2),
-        k.anchor("center"),
-        "gameObj" // 공통 태그 추가
-      ]);
-
-      k.add([
         k.text(`Score: ${score}\nPress Space to Restart`),
         k.pos(k.width() / 2, k.height() / 2),
-        k.scale(2),
+        k.scale(k.width() > 650 ? 1.4 : 0.7),
         k.anchor("center"),
         "gameObj" // 공통 태그 추가
       ]);
@@ -135,10 +129,14 @@ const jump = (
 const spawnTree = (
   k: KAPLAYCtx<{}, string>,
   FLOOR_HEIGHT: number,
-  TREE_MOVE_SPEED: number
+  TREE_MOVE_SPEED: number,
+  playerState: {
+    leftJump: number;
+    score: number;
+  }
 ) => {
   k.add([
-    k.rect(15, k.rand(32, 96)),
+    k.rect(15, k.rand(32, 90)),
     k.area(),
     k.outline(4),
     k.pos(k.width(), k.height() - FLOOR_HEIGHT),
@@ -151,5 +149,5 @@ const spawnTree = (
     "gameObj" // 공통 태그 추가
   ]);
 
-  k.wait(k.rand(0.4, 1.5), () => spawnTree(k, FLOOR_HEIGHT, TREE_MOVE_SPEED));
+  k.wait(k.rand(0.5, 1.5), () => spawnTree(k, FLOOR_HEIGHT, TREE_MOVE_SPEED + (10 * Math.floor((playerState.score / 100) / 30)), playerState));
 };
