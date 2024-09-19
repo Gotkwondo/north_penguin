@@ -1,7 +1,7 @@
 import kaplay, { GameObj, PosComp, SpriteComp, AreaComp, BodyComp, KAPLAYCtx } from 'kaplay'
 import Walk from 'assets/Images/Crouch.png';
 
-export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasElement>, start: boolean) => {
+export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasElement>, start: boolean, setTopScore: (newScore: number) => void) => {
   const FLOOR_HEIGHT = 48;
   const TREE_MOVE_SPEED = 400;
   const playerState: {
@@ -11,15 +11,14 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
     leftJump: 1,
     score: 0
   };
-  console.log(canvasRef.current!.width)
+  
   if (canvasRef.current && start) {
-    console.log(canvasRef.current!.width)
     let k: KAPLAYCtx<{}, string> = kaplay({
       canvas: canvasRef.current,
       root: canvasRef.current,
       global: false,
-    })
-    console.log(canvasRef.current!.width)
+    });
+    
     k.setBackground(141, 183, 255);
     k.loadSprite("Penguein", Walk);
     k.scene('game', () => {
@@ -86,6 +85,7 @@ export const useKaplay = (canvasRef: React.MutableRefObject<null | HTMLCanvasEle
       k.onKeyPress("space", () => k.go('game'));
       k.onClick(() => k.go('game'));
       playerState.score = 0;
+      setTopScore(score);
     });
 
     k.go('game');
