@@ -8,10 +8,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <HomeContent
-        titleText={'고향으로 가기 위한 펭귄의 여행'}
-        subTitleText={'남극에서 북극까지'}
-      />
+      <HomeContent />
     </>
   )
 }

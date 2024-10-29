@@ -52,21 +52,17 @@ module.exports = {
           },
         ],
       },
+      { // 
+        test: /\.svg$/,
+        use: ["@svgr/webpack", "file-loader"],
+      },
       {
         // webpack5 부터는 새롭게 추가된 Asset Module을 이용해 별도의 패키지 없이 이미지 등의 asset을 활용이 가능하다.
-        test: /\.(png|jpe?g|gif|ico|svg)$/i,
+        test: /\.(png|jpe?g|gif|ico)$/i,
         type: 'asset', // 정적 asset을 처리하여 해당 파일을 별도의 파일로 출력, 경로를 반환한다.
         generator: { // generator 설정은 출력된 파일 이름을 동적으로 생성
           filename: 'images/[hash][ext][query]', // (hash: 해시 값, ext: 파일 확장자, query: 쿼리 문자열)
         },
-      },
-      // {
-      //   test: /\.gif$/,
-      //   use: 'file-loader',
-      // },
-      {
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
       },
     ]
   },

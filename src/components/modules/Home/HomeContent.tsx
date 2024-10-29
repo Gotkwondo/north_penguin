@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import TestingImg from 'assets/Images/TestingImg.jpg';
 import Walk from 'assets/Images/Walk.gif'
 import IconBody from 'components/modules/IconBody';
+import {ReactComponent as WavelSVG} from 'assets/wave.svg'
+
 
 interface HomeContentInterface {
   imgUrl?: string
@@ -10,17 +12,21 @@ interface HomeContentInterface {
   subTitleText?: string
 }
 
-const HomeContent = ({ imgUrl, titleText, subTitleText }: HomeContentInterface) => {
+const HomeContent = () => {
   return (
     <ContentArea>
-      <TitleArea>
-        {titleText}
-      </TitleArea>
-      <SubTitleArea>
-        {subTitleText}
-      </SubTitleArea>
-      <ImgContent IconUrl={Walk} width={50} height={100}/>
+      {/* <TitleArea>제목</TitleArea> */}
+      <ImgContent IconUrl={Walk} width={50} height={100} />
+      <MessageArea>
+        <SubTitleArea>펭과 함께 떠나는</SubTitleArea>
+        <SubTitleArea>남극으로의 여정</SubTitleArea>
+      </MessageArea>
       {/* <ImgContent src={imgUrl} /> */}
+      <div style={{ position: 'relative', width: '100%' }}>
+        ddd
+        <WavelSVG />
+        dd
+      </div>
       
     </ContentArea>
   )
@@ -28,9 +34,9 @@ const HomeContent = ({ imgUrl, titleText, subTitleText }: HomeContentInterface) 
 
 const ContentArea = styled.div`
   width: 100%;
-  height: 60vh;
   font-size: 12px;
   display: flex;
+  align-items: center;
   flex-direction: column;
 `
 
@@ -46,12 +52,17 @@ const TitleArea = styled.div`
   /* top: 1rem; */
 `
 
+const MessageArea = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+`
+
 const SubTitleArea = styled.div`
-  position: absolute;
-  width: calc(100% - 2rem);
+  width: 100%;
   font-size: 4em;
-  top: 40%;
-  text-align: end;
+  margin-bottom: 2%;
 `
 
 export default HomeContent;
