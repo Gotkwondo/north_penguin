@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import HomeContent from 'components/modules/Home/HomeContent';
+import HomeContent from 'components/Home/HomeContent';
 
 const meta = {
   component: HomeContent,
