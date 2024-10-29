@@ -4,27 +4,27 @@ import TestingImg from 'assets/Images/TestingImg.jpg';
 import Walk from 'assets/Images/Walk.gif'
 import IconBody from 'components/modules/IconBody';
 import BackgroundIMG from 'components/modules/BackgroundIMG';
-// import { ReactComponent as WavelSVG } from 'assets/wave.svg';
 import WaveSVG from 'assets/WaveSVG.svg';
-
-
-interface HomeContentInterface {
-  imgUrl?: string
-  titleText?: string
-  subTitleText?: string
-}
 
 const HomeContent = () => {
   return (
     <ContentArea>
-      <ImgContent IconUrl={Walk} width={50} height={100} />
-      <MessageArea>
-        <SubTitleArea>펭과 함께 떠나는</SubTitleArea>
-        <SubTitleArea>남극으로의 여정</SubTitleArea>
-      </MessageArea>
+      <RowFlexBox>
+        <ImgContent IconUrl={Walk} width={50} height={100} />
+        <ColumnFlexBox>
+          <SubTitleArea>펭과 함께 떠나는</SubTitleArea>
+          <SubTitleArea>남극으로의 여정</SubTitleArea>
+        </ColumnFlexBox>
+      </RowFlexBox>
+      
       <BackgroundIMG imgurl={WaveSVG} height={"120"}>
-        <div>d</div>
-        <div>aa</div>
+        <SubTitleArea>이미지</SubTitleArea>
+        <ColumnFlexBox>
+          <SubTitleArea>아....</SubTitleArea>
+          <SubTitleArea>낮잠을 자다가....</SubTitleArea>
+          <SubTitleArea>북극에 와버렸다!!</SubTitleArea>
+        </ColumnFlexBox>
+        
       </BackgroundIMG>
       
     </ContentArea>
@@ -37,6 +37,7 @@ const ContentArea = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 100px;
 `
 
 const ImgContent = styled(IconBody)`
@@ -44,17 +45,23 @@ const ImgContent = styled(IconBody)`
   background-size: cover;
 `
 
-const TitleArea = styled.div`
-  position: absolute; // 이미지 위에 텍스트를 띄우기 위한 position
-  width: calc(100% - 2rem);
-  font-size: 5em;
-`
+// const TitleArea = styled.div`
+//   position: absolute; // 이미지 위에 텍스트를 띄우기 위한 position
+//   width: calc(100% - 2rem);
+//   font-size: 5em;
+// `
 
-const MessageArea = styled.div`
+const ColumnFlexBox = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
+`
+const RowFlexBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10%;
 `
 
 const SubTitleArea = styled.div`
