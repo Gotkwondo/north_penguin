@@ -16,17 +16,21 @@ const IconBody = ({ width, height, IconUrl }: IconBodyInterface) => {
 }
 
 const IconArea = styled.div`
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* padding-top: 50px; */
 `
 
 const Img = styled.img<{ width: number, height: number, src: string }>`
   width: ${props => props.width}%;
   height: ${props => props.height}%;
   src: ${props => props.src};
+  @media (max-width: 720px){
+    height: calc(${props => props.height} / 2);
+  }
 `
 
 export default IconBody;

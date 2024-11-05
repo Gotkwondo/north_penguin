@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface BackgroundIMGInterface{
   imgurl: string,
-  height: string,
+  height: number,
   children: React.ReactNode,
 }
 
@@ -21,10 +21,13 @@ const BackgroundIMG = ({imgurl, height, children}: BackgroundIMGInterface) => {
     </Area>
   )
 };
-const Area = styled.div<{height: string}>`
+const Area = styled.div<{height: number}>`
   width: 100%;
-  height: ${props => props.height}vh;
+  height: ${props => props.height}dvh;
   position: relative;
+  @media (max-width: 460px) {
+    height: ${props => props.height / 2}dvh;
+  }
 `
 
 const Background = styled.div<{ imgurl: string }>`
@@ -32,12 +35,13 @@ const Background = styled.div<{ imgurl: string }>`
   width: 100%;
   position: absolute;
   background-image: url(${props => props.imgurl});
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-repeat: no-repeat; */
+  background-size: contain;
   background-position: center;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  
 `
 
 export default BackgroundIMG;

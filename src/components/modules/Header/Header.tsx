@@ -31,7 +31,6 @@ const HeaderBody = styled.div`
   background-color: white;
   border-radius: 20px;
   background-color: aliceblue;
-  margin-bottom: 2rem;
 `
 
 const IconArea = styled(Link)`
